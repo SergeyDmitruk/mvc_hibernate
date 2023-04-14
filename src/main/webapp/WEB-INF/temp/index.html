@@ -2,23 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<title>Title</title>
 </head>
 <body>
 <div>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Action</th>
 
-        </tr>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.getName}"></td>
-            <td th:text="${user.getCity}"></td>
-        </tr>
-    </table>
+<a th:href="@{users/add}">Create user</a>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Action</th>
+
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getName}"></td>
+        <td th:text="${user.getCity}"></td>
+        <td>
+            <a th:href="@{users/edit/{id}(id=${user.getId()})}">Update</a>
+            <a th:href="@{users/delete/{id}(id=${user.getId()})}">Delete</a>
+        </td>
+    </tr>
+</table>
 </div>
 </body>
 </html>

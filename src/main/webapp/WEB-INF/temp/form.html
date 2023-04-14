@@ -1,10 +1,27 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="UTF-8">
+<title>Title</title>
 </head>
 <body>
 
+<h2 th:text="${labelUpUser} ? 'Update user' : 'Create user'">Create new person</h2>
+
+<form th:method="POST" th:action="@{/users}" th:object="${user}" th:unless="${labelUpUser}">
+<label for="name">Name</label><br>
+<input type="text" id="name" th:field="*{name}"><br>
+<label for="city">City</label><br>
+<input type="text" id="city" th:field="*{city}"><br><br>
+<input type="submit" value="create">
+</form>
+<form th:method="PATCH" th:action="@{/users/edit/{id}(id=${user.getId()})}" th:object="${user}" th:if="${labelUpUser}">
+<label for="upName">Name</label><br>
+<input type="text" id="upName" th:field="*{name}"><br>
+<label for="upCity">City</label><br>
+<input type="text" id="upCity" th:field="*{city}"><br><br>
+<input type="submit" value="Update">
+</form>
 </body>
 </html>
